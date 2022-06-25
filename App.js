@@ -6,13 +6,13 @@ import AccountScreen from "./src/screens/AccountScreen";
 import TrackCreateScreen from "./src/screens/TrackCreateScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 import TrackDetailsScreen from "./src/screens/TrackDetailsScreen";
-import signupScreen from "./src/screens/signupScreen";
+import SignupScreen from "./src/screens/SignupScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import { Provider as AuthProvider } from './src/context/AuthContext'
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
-    SignUp: signupScreen,
+    SignUp: SignupScreen,
     SignIn: SigninScreen
   }, { defaultNavigationOptions: { headerShown: false }}),
   mainFlow: createBottomTabNavigator({

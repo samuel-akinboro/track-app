@@ -1,9 +1,11 @@
 import { StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Text, Input } from 'react-native-elements'
 import Spacer from '../components/Spacer'
+import { Context as AuthContext } from '../context/AuthContext'
 
 const signupScreen = () => {
+  const {state, signUp} = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -28,11 +30,19 @@ const signupScreen = () => {
         secureTextEntry
       />
       <Spacer />
-      <Button title="Sign up" />
+      {state.errorMessagen && <Spacer>
+        <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+      </Spacer>}
+      <Button title="Sign up" onPress={()=> signUp({email, password})} />
     </Spacer>
   )
 }
 
 export default signupScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  errorMessage: {
+    color: 'red',
+    fontSize: 16,
+  }
+})
