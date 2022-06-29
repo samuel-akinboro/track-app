@@ -6,7 +6,7 @@ import { Context as AuthContext } from '../context/AuthContext'
 import { NavigationEvents } from 'react-navigation'
 
 const signupScreen = ({ navigation }) => {
-  const {state, signUp, clearErrorMessage} = useContext(AuthContext)
+  const { state, signUp, clearErrorMessage } = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
