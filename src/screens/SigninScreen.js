@@ -3,14 +3,16 @@ import React, { useState, useContext } from 'react'
 import Spacer from '../components/Spacer'
 import { Text, Button, Input } from 'react-native-elements'
 import { Context as AuthContext } from '../context/AuthContext'
+import { NavigationEvents } from 'react-navigation'
 
 const SigninScreen = ({navigation}) => {
-  const { state, signIn } = useContext(AuthContext)
+  const { state, signIn, clearErrorMessage } = useContext(AuthContext)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <Spacer>
+      <NavigationEvents onWillBlur={clearErrorMessage} />
       <Spacer />
       <Text h2 style={{textAlign: 'center'}}>Sign In</Text>
       <Spacer />
@@ -37,7 +39,7 @@ const SigninScreen = ({navigation}) => {
       <Button title='Sign In' onPress={()=> signIn({email, password})} />
       <Spacer />
       <TouchableOpacity onPress={()=> navigation.navigate('SignUp')}>
-        <Text style={{textAlign: 'center'}}>You don't have an account? Sign up</Text>
+        <Text style={{textAlign: 'center'}} h6>You don't have an account? Sign up</Text>
       </TouchableOpacity>
     </Spacer>
   )

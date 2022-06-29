@@ -10,7 +10,9 @@ const authReducer = (state, action) => {
     case 'SIGN_UP': 
       return {...state, errorMessage: '', token: action.payload};
     case 'SIGN_IN':
-      return {...state, errorMessage: '', token: action.payload}
+      return {...state, errorMessage: '', token: action.payload};
+    case 'CLEAR_ERROR_MESSAGE':
+      return {...state, errorMessage: ''};
     default: 
       return state;
   }
@@ -38,12 +40,20 @@ const signUp = dispatch => async ({email, password}) => {
   }
 }
 
+const clearErrorMessage = dispatch => {
+  return ()=> {
+    dispatch({
+      type: 'CLEAR_ERROR_MESSAGE'
+    })
+  }
+}
+
 const signOut = () => {
 
 }
 
 export const { Context, Provider } = createDataContext(
   authReducer,
-  {signUp, signIn, signOut},
+  {signUp, signIn, signOut, clearErrorMessage},
   {token: null, errorMessage: ''}
 )
