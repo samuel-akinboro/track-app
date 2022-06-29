@@ -11,6 +11,8 @@ const authReducer = (state, action) => {
       return {...state, errorMessage: '', token: action.payload};
     case 'SIGN_IN':
       return {...state, errorMessage: '', token: action.payload};
+    case 'SIGN_OUT':
+      return {...state, token: null, errorMessage: ''};
     case 'CLEAR_ERROR_MESSAGE':
       return {...state, errorMessage: ''};
     default: 
@@ -58,8 +60,10 @@ const clearErrorMessage = dispatch => {
   }
 }
 
-const signOut = () => {
-
+const signOut = dispatch => async () => {
+  await AsyncStorage.removeItem('token');
+  dispatch({type: 'SIGN_OUT'});
+  navigate('SignIn');
 }
 
 export const { Context, Provider } = createDataContext(
