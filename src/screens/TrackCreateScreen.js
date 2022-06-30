@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import Map from '../components/Map'
 import * as Location from 'expo-location'
+import '../_mockLocation'
 
 const TrackCreateScreen = () => {
   const [errorMessage, setErrorMessage] = useState(null);
