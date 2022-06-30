@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react';
-import MapView from 'react-native-maps'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import MapView, { Polyline } from 'react-native-maps';
 
 const Map = () => {
   return (
