@@ -8,9 +8,7 @@ import { withNavigationFocus } from 'react-navigation';
 
 const TrackCreateScreen = ({ isFocused }) => {
   const { addLocation } = useContext(LocationContext);
-  const [errorMessage] = useLocation(addLocation)
-
-  console.log('is focused')
+  const [errorMessage] = useLocation(isFocused, addLocation)
 
   return (
     <SafeAreaView>

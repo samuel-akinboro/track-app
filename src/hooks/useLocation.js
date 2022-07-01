@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { requestForegroundPermissionsAsync, watchPositionAsync, Accuracy } from 'expo-location'
 
-export default (callback) => {
+export default (shouldTrack, callback) => {
   const [errorMessage, setErrorMessage] = useState(null);
+  const [subscriber, setSubscriber] = useState(null)
 
   const startTracking = async () => {
     try {
@@ -10,20 +11,26 @@ export default (callback) => {
       if(status !== 'granted'){
         console.log('permission not granted');
       }
-      watchPositionAsync({
+      const sub = watchPositionAsync({
         accuracy: Accuracy.BestForNavigation,
         timeInterval: 1000,
         distanceInterval: 10
       }, callback
       );
+      setSubscriber(sub)
     } catch (err) {
       setErrorMessage(err.message)
     }
   }
 
   useEffect(()=> {
-    startTracking();
-  }, []);
+    if(shouldTrack){
+      startTracking();
+    }else{
+      subscriber._W.remove()
+      setSubscriber(null)
+    }
+  }, [shouldTrack]);
 
   return [errorMessage]
 }
