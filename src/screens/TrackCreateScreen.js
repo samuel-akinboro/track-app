@@ -1,10 +1,12 @@
-import '../_mockLocation'
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
-import React, { useState, useEffect } from 'react';
+// import '../_mockLocation'
+import { StyleSheet, Text, SafeAreaView } from 'react-native'
+import React, { useState, useEffect, useContext } from 'react';
 import Map from '../components/Map'
 import { requestForegroundPermissionsAsync, watchPositionAsync, Accuracy } from 'expo-location'
+import { Context as LocationContext } from '../context/LocationContext'
 
 const TrackCreateScreen = () => {
+  const { addLocation } = useContext(LocationContext)
   const [errorMessage, setErrorMessage] = useState(null);
 
   const startTracking = async () => {
@@ -18,7 +20,7 @@ const TrackCreateScreen = () => {
         timeInterval: 1000,
         distanceInterval: 10
       }, (location) => {
-        // console.log(location)
+        addLocation(location)
       });
     } catch (err) {
       setErrorMessage(err.message)

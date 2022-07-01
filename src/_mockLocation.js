@@ -1,18 +1,18 @@
 import * as Location from  'expo-location'
 
-const tenMetersWithDegrees = 0.0001;
+const tenMetersWithDegrees = 0.00001;
 
 const getLocation = increment => {
   return {
     timestamp: 10000000,
     coords: {
+      accuracy: 30,
+      altitude: 32.02198600769043,
+      altitudeAccuracy: 3,
+      heading: -1,
       speed: 0,
-      heading: 0,
-      accuracy: 5,
-      altitudeAccuracy: 5,
-      altitude: 5,
-      longitude: -122.0312186 + increment * tenMetersWithDegrees,
-      latitude: 37.33233141 + increment * tenMetersWithDegrees
+      longitude: 6.585244280292266 + increment * tenMetersWithDegrees,
+      latitude: 3.09346147813191 + increment * tenMetersWithDegrees
     }
   }
 }
@@ -25,4 +25,4 @@ setInterval(()=>{
     location: getLocation(counter)
   });
   counter++
-}, 1000)
+}, 2000)
