@@ -7,11 +7,12 @@ export default (shouldTrack, callback) => {
 
   const startTracking = async () => {
     try {
-      const { status } = requestForegroundPermissionsAsync();
+      const { status } = await requestForegroundPermissionsAsync();
+      console.log('status', status)
       if(status !== 'granted'){
         console.log('permission not granted');
       }
-      const sub = watchPositionAsync({
+      const sub = await watchPositionAsync({
         accuracy: Accuracy.BestForNavigation,
         timeInterval: 1000,
         distanceInterval: 10
@@ -27,7 +28,7 @@ export default (shouldTrack, callback) => {
     if(shouldTrack){
       startTracking();
     }else{
-      subscriber._W.remove()
+      subscriber.remove()
       setSubscriber(null)
     }
   }, [shouldTrack]);
