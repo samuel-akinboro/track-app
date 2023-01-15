@@ -21,17 +21,26 @@ const TrackForm = () => {
           onChangeText={changeName}
         />
       </Spacer>
-      <Button 
-        title={recording ? 'Stop' : 'Start recording'}
-        buttonStyle={{ backgroundColor: recording ? 'rgba(214, 61, 57, 1)' : 'rgba(90, 154, 230, 1)' }}
-        onPress={() => {
-          if(recording){
-            stopRecording()
-          }else{
-            startRecording()
-          }
-        }}
-      />
+      <Spacer>
+        <Button 
+          title={recording ? 'Stop' : 'Start recording'}
+          buttonStyle={{ backgroundColor: recording ? 'rgba(214, 61, 57, 1)' : 'rgba(90, 154, 230, 1)' }}
+          onPress={() => {
+            if(recording){
+              stopRecording()
+            }else{
+              startRecording()
+            }
+          }}
+        />
+      </Spacer>
+      <Spacer>
+        {
+          !recording && locations.length ? (
+            <Button title='Save recording' />
+          ) : null
+        }
+      </Spacer>
     </>
   )
 }
