@@ -35,11 +35,9 @@ const TrackForm = () => {
         />
       </Spacer>
       <Spacer>
-        {
-          !recording && locations.length ? (
-            <Button title='Save recording' />
-          ) : null
-        }
+        {!recording && locations.length ? (
+          <Button title='Save Recording' />
+        ):null}
       </Spacer>
     </>
   )
